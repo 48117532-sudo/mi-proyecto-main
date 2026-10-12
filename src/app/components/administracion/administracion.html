@@ -1,0 +1,106 @@
+<h2>Administración</h2>
+
+<div class="row g-2 mb-3">
+
+  <div class="col-auto">
+
+    <input
+      class="form-control"
+      [(ngModel)]="nombreNuevo"
+      placeholder="Nombre del profesor"
+    />
+
+  </div>
+
+  <div class="col-auto">
+
+    <button
+      class="btn btn-primary"
+      (click)="guardarProfesor()"
+    >
+      {{ profesorEditando ? 'Guardar cambios' : 'Agregar' }}
+    </button>
+
+  </div>
+
+  @if (profesorEditando) {
+
+    <div class="col-auto">
+
+      <button
+        class="btn btn-secondary"
+        (click)="limpiarFormulario()"
+      >
+        Cancelar
+      </button>
+
+    </div>
+
+  }
+
+</div>
+
+<table class="table table-striped">
+
+  <thead>
+
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Acciones</th>
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+    @for (profesor of datos.profesores(); track profesor.id) {
+
+      <tr>
+
+        <td>
+          {{ profesor.id }}
+        </td>
+
+        <td>
+          {{ profesor.nombre }}
+        </td>
+
+        <td>
+
+          <button
+            class="btn btn-sm btn-warning me-2"
+            (click)="editarProfesor(profesor)"
+          >
+            Editar
+          </button>
+
+          <button
+            class="btn btn-sm btn-danger"
+            (click)="eliminarProfesor(profesor.id)"
+          >
+            Eliminar
+          </button>
+
+        </td>
+
+      </tr>
+
+    } @empty {
+
+      <tr>
+
+        <td
+          colspan="3"
+          class="text-center text-muted"
+        >
+          No hay profesores todavía.
+        </td>
+
+      </tr>
+
+    }
+
+  </tbody>
+
+</table>

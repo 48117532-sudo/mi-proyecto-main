@@ -1,0 +1,110 @@
+<h2>Cursos</h2>
+
+<div class="row g-2 mb-3">
+
+  <div class="col-auto">
+
+    <input
+      class="form-control"
+      [(ngModel)]="nombreNuevo"
+      placeholder="Nombre del curso"
+    />
+
+  </div>
+
+  <div class="col-auto">
+
+    <button
+      class="btn btn-primary"
+      (click)="guardarCurso()"
+    >
+      {{ cursoEditando ? 'Guardar cambios' : 'Agregar' }}
+    </button>
+
+  </div>
+
+  @if (cursoEditando) {
+
+    <div class="col-auto">
+
+      <button
+        class="btn btn-secondary"
+        (click)="limpiarFormulario()"
+      >
+        Cancelar
+      </button>
+
+    </div>
+
+  }
+
+</div>
+
+<table class="table table-striped">
+
+  <thead>
+
+    <tr>
+
+      <th>ID</th>
+
+      <th>Nombre</th>
+
+      <th>Acciones</th>
+
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+    @for (curso of datos.cursos(); track curso.id) {
+
+      <tr>
+
+        <td>
+          {{ curso.id }}
+        </td>
+
+        <td>
+          {{ curso.nombre }}
+        </td>
+
+        <td>
+
+          <button
+            class="btn btn-sm btn-warning me-2"
+            (click)="editarCurso(curso)"
+          >
+            Editar
+          </button>
+
+          <button
+            class="btn btn-sm btn-danger"
+            (click)="eliminarCurso(curso.id)"
+          >
+            Eliminar
+          </button>
+
+        </td>
+
+      </tr>
+
+    } @empty {
+
+      <tr>
+
+        <td
+          colspan="3"
+          class="text-center text-muted"
+        >
+          No hay cursos todavía.
+        </td>
+
+      </tr>
+
+    }
+
+  </tbody>
+
+</table>

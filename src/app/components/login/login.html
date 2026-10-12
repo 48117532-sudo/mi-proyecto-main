@@ -1,0 +1,45 @@
+<div class="login-container">
+
+  <div class="login-card">
+
+    <h2>Iniciar sesión</h2>
+
+    <div class="mb-3">
+      <label class="form-label">Usuario</label>
+
+      <input
+        class="form-control"
+        type="text"
+        [(ngModel)]="username"
+        placeholder="Usuario"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Contraseña</label>
+
+      <input
+        class="form-control"
+        type="password"
+        [(ngModel)]="password"
+        placeholder="Contraseña"
+      />
+    </div>
+
+    @if (error) {
+      <div class="alert alert-danger">
+        {{ error }}
+      </div>
+    }
+
+    <button
+      class="btn btn-primary w-100"
+      (click)="iniciarSesion()"
+      [disabled]="cargando"
+    >
+      {{ cargando ? 'Ingresando...' : 'Ingresar' }}
+    </button>
+
+  </div>
+
+</div>
